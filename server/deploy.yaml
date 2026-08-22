@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: server-app
+  template:
+    metadata:
+      labels:
+        app: server-app
+    spec:
+      imagePullSecrets:
+        - name: acr-secret
+      containers:
+        - name: server-container
+          image: meetdev.azurecr.io/devconnect-backend:v1
+          ports:
+            - containerPort: 4000
+          envFrom:
+            - configMapRef:
+                name: server-cm
+          env:
+            - name: CLOUDINARY_CLOUD_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: server-secret
+                  key: CLOUDINARY_CLOUD_NAME
+            - name: CLOUDINARY_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: server-secret
+                  key: CLOUDINARY_API_KEY
+            - name: CLOUDINARY_API_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: server-secret
+                  key: CLOUDINARY_API_SECRET
+            - name: DEVCONNECT_TOKEN_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: server-secret
+                  key: DEVCONNECT_TOKEN_KEY
+            - name: EMAIL_PASS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: server-secret
+                  key: EMAIL_PASS_KEY
+            - name: DB_URL
+              valueFrom:
+                secretKeyRef:
+                  name: server-secret
+                  key: DB_URL
