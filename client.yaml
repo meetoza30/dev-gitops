@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: client-deploy
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: client-app
@@ -19,3 +19,16 @@ spec:
           image: meetdev.azurecr.io/devconnect-frontend:v1
           ports:
             - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-service
+spec:
+  selector:
+    app: client-app
+  ports:
+    - name: client-port
+      port: 80
+      targetPort: 80
+  type: ClusterIP

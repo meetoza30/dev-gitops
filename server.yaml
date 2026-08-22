@@ -16,7 +16,7 @@ spec:
         - name: acr-secret
       containers:
         - name: server-container
-          image: meetdev.azurecr.io/devconnect-backend:v1
+          image: meetdev.azurecr.io/devconnect-backend:v2
           ports:
             - containerPort: 4000
           envFrom:
@@ -53,3 +53,23 @@ spec:
                 secretKeyRef:
                   name: server-secret
                   key: DB_URL
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: server-service
+spec:
+  selector:
+    app: server-app
+  ports:
+    - port: 4000
+      targetPort: 4000
+  type: ClusterIP
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: server-cm
+data:
+  PORT: "4000"
+  DEVCONNECT_EMAIL: "meetoz309@gmail.com"

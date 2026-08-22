@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
- name: server-cm
-data:
- PORT: "4000"
- DEVCONNECT_EMAIL: "meetoz309@gmail.com"
-
-
