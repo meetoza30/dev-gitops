@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: client-deploy
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: client-app
@@ -16,7 +16,7 @@ spec:
         - name: acr-secret
       containers:
         - name: client-container
-          image: meetdev.azurecr.io/devconnect-frontend:v1
+          image: meetdev.azurecr.io/devconnect-frontend:beff51f
           ports:
             - containerPort: 80
 ---
