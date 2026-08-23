@@ -16,7 +16,7 @@ spec:
         - name: acr-secret
       containers:
         - name: server-container
-          image: meetdev.azurecr.io/devconnect-backend:1c1d8d5
+          image: meetdev.azurecr.io/devconnect-backend:c7266a4
           ports:
             - containerPort: 4000
           envFrom:
