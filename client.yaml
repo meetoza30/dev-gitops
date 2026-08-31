@@ -16,7 +16,7 @@ spec:
         - name: acr-secret
       containers:
         - name: client-container
-          image: meetdev.azurecr.io/devconnect-frontend:c7266a4
+          image: meetdev.azurecr.io/devconnect-frontend:6fd6c0e
           ports:
             - containerPort: 80
 ---
