@@ -3,6 +3,8 @@ kind: ServiceMonitor
 metadata:
   name: server-servicemonitor
   namespace: monitoring
+  labels:
+   release: kube-prometheus-stack
 spec:
   endpoints:
     - interval: 15s
