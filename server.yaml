@@ -12,11 +12,9 @@ spec:
       labels:
         app: server-app
     spec:
-      imagePullSecrets:
-        - name: acr-secret
       containers:
         - name: server-container
-          image: meetdev.azurecr.io/devconnect-backend:d362449
+          image: meetdev.azurecr.io/devconnect-backend:6fd6c0e
           ports:
             - containerPort: 4000
           envFrom:
